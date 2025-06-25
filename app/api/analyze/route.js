@@ -128,7 +128,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import puppeteer from 'puppeteer-core';
-import chromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium';
 import { AxePuppeteer } from '@axe-core/puppeteer';
 import dbConnect from '../../../lib/mongodb';
 import Report from '../../../models/Report';
@@ -165,7 +165,7 @@ export async function POST(request) {
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
+      executablePath: await chromium.executablePath(),
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
