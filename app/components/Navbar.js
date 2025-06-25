@@ -14,7 +14,7 @@ export default function Navbar() {
         <div>
           <h1 className="text-2xl font-bold">
             <Link href="/" className="hover:text-blue-200 transition-colors">
-              Accessibility Analyzer
+              AccessAudit  - Accessibility Analyzer
             </Link>
           </h1>
           <p className="text-blue-100 dark:text-blue-200">
