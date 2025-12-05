@@ -35,9 +35,8 @@ export async function POST(request) {
     await dbConnect();
 
     // Run Axe analysis
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-dev-shm-usage']
+    const browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`,
     });
 
     const page = await browser.newPage();
