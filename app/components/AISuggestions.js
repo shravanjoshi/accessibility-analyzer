@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CodeBlock from './CodeBlock';
 import LoadingSpinner from './LoadingSpinner';
 
-export default function AISuggestions({ reportId, initialSuggestions = null }) {
+export default function AISuggestions({ reportId, initialSuggestions = null, onUpdateSuggestions }) {
   const [suggestions, setSuggestions] = useState(initialSuggestions);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -30,6 +30,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null }) {
 
       const data = await response.json();
       setSuggestions(data);
+      onUpdateSuggestions(data);
     } catch (error) {
       console.error('Error generating suggestions:', error);
       setError(error.message);
@@ -66,7 +67,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null }) {
       <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 transition-colors">
         <div className="text-center">
           <div className="mb-4">
-            <svg className="mx-auto h-12 w-12 text-blue-400 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="mx-auto h-12 w-12 text-emerald-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
           </div>
@@ -79,7 +80,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null }) {
           <button
             onClick={generateSuggestions}
             disabled={isLoading}
-            className="bg-blue-600 dark:bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
+            className="bg-emerald-800  text-white px-6 py-2 rounded-lg hover:bg-emerald-900 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
           >
             Generate AI Suggestions
           </button>

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import AnalyzerForm from './components/AnalyzerForm';
 import ReportDisplay from './components/ReportDisplay';
 import ReportHistory from './components/ReportHistory';
+import Link from 'next/link';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -31,20 +32,20 @@ export default function Home() {
         <p className="text-gray-600 dark:text-gray-400 mb-8">
           Please sign in to start analyzing websites for accessibility issues.
         </p>
-        <div className="space-x-4">
-          <button
-            onClick={() => router.push('/auth/signin')}
-            className="bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200"
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => router.push('/auth/signup')}
-            className="bg-green-600 dark:bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-700 dark:hover:bg-green-600 transition-colors duration-200"
-          >
-            Sign Up
-          </button>
-        </div>
+        <div className="space-x-2">
+              <Link
+                href="/auth/signin"
+                className=" px-3 py-1 rounded hover:underline text-black dark:text-gray-200"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="cursor-pointer text-white bg-emerald-800 hover:bg-emerald-900 dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-black px-3 py-1 rounded transition-colors duration-200"
+              >
+                Sign Up
+              </Link>
+            </div>
       </div>
     );
   }

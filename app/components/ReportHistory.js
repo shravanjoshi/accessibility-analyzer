@@ -194,13 +194,13 @@ export default function ReportHistory() {
                     </div>
                   )}
 
-                  <div className="text-blue-600 dark:text-blue-400 text-sm">
+                  <div className="text-emerald-800 dark:text-gray-200 text-sm">
                     {loadingReportId === report._id ? (
                       <LoadingSpinner />
                     ) : expandedReport && expandedReport._id === report._id ? (
-                      '▼ Hide Details'
+                      'Hide Details'
                     ) : (
-                      '▶ View Details'
+                      'View Details'
                     )}
                   </div>
 
@@ -231,7 +231,7 @@ export default function ReportHistory() {
 
             {/* Expanded Report Details */}
             {expandedReport && expandedReport._id === report._id && (
-              <div className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 p-6">
+              <div className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
                 {/* <div className="mb-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/30 rounded-lg p-3">
                   <p className="text-blue-800 dark:text-blue-200 text-sm">
                     <strong>Full Report Details for:</strong> {expandedReport.url}

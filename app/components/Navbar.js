@@ -9,16 +9,16 @@ export default function Navbar() {
   const { data: session, status } = useSession();
 
   return (
-    <nav className="bg-blue-600 dark:bg-blue-800 text-white p-4 shadow-lg transition-colors duration-200">
+    <nav className="bg-emerald-950 text-white p-4 shadow-lg transition-colors duration-200">
       <div className="container mx-auto flex justify-between items-center">
-        <div>
+        <div className='text-gray-200'>
           <h1 className="text-2xl font-bold">
-            <Link href="/" className="hover:text-blue-200 transition-colors">
-              AccessAudit  - Accessibility Analyzer
+            <Link href="/" >
+              AccessAudit 
             </Link>
           </h1>
-          <p className="text-blue-100 dark:text-blue-200">
-            Comprehensive web accessibility testing
+          <p>
+            Accessibility Analyzer
           </p>
         </div>
         
@@ -26,7 +26,7 @@ export default function Navbar() {
           <ThemeToggle />
           
           {status === 'loading' ? (
-            <div className="text-blue-100 dark:text-blue-200">Loading...</div>
+            <div className="text-gray-200 dark:text-blue-200">Loading...</div>
           ) : session ? (
             <div className="flex items-center space-x-4">
               <span className="text-">
@@ -34,7 +34,7 @@ export default function Navbar() {
               </span>
               <button
                 onClick={() => signOut()}
-                className="cursor-pointer bg-gray-50 hover:bg-gray-200 text-blue-600 px-3 py-1 rounded transition-colors duration-200"
+                className="cursor-pointer bg-gray-100 hover:bg-gray-200 text-black px-3 py-1 rounded transition-colors duration-200"
               >
                 Sign Out
               </button>
@@ -43,13 +43,13 @@ export default function Navbar() {
             <div className="flex space-x-2">
               <Link
                 href="/auth/signin"
-                className="bg-blue-700 dark:bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-700 px-3 py-1 rounded transition-colors duration-200"
+                className=" px-3 py-1 rounded hover:underline text-gray-200"
               >
                 Sign In
               </Link>
               <Link
                 href="/auth/signup"
-                className="cursor-pointer bg-gray-50 hover:bg-gray-200 text-blue-600 px-3 py-1 rounded transition-colors duration-200"
+                className="cursor-pointer bg-gray-100 hover:bg-gray-200 text-black px-3 py-1 rounded transition-colors duration-200"
               >
                 Sign Up
               </Link>

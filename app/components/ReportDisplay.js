@@ -5,6 +5,7 @@ import AISuggestions from './AISuggestions';
 
 export default function ReportDisplay({ report }) {
   const [activeTab, setActiveTab] = useState('summary');
+  const [aiSuggestions, setAiSuggestions] = useState(report.aiSuggestions);
 
   const formatTimestamp = (timestamp) => {
     return new Date(timestamp).toLocaleDateString('en-US', {
@@ -83,16 +84,16 @@ export default function ReportDisplay({ report }) {
             >
               {/* <span className="mr-2">{tab.icon}</span> */}
               {tab.label}
-              {tab.id === 'violations' && report.summary?.violations > 0 && (
-                <span className="ml-2 bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 py-1 px-2 rounded-full text-xs">
+              {/* {tab.id === 'violations' && report.summary?.violations > 0 && (
+                <span className="ml-1 text-emerald-900 dark:text-red-400 py-1 px-2 rounded-full text-xs">
                   {report.summary.violations}
                 </span>
-              )}
-              {tab.id === 'incomplete' && report.summary?.incomplete > 0 && (
+              )} */}
+              {/* {tab.id === 'incomplete' && report.summary?.incomplete > 0 && (
                 <span className="ml-2 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 py-1 px-2 rounded-full text-xs">
                   {report.summary.incomplete}
                 </span>
-              )}
+              )} */}
             </button>
           ))}
         </nav>
@@ -341,7 +342,8 @@ export default function ReportDisplay({ report }) {
         {activeTab === 'ai-suggestions' && (
           <AISuggestions 
             reportId={report._id} 
-            initialSuggestions={report.aiSuggestions}
+            initialSuggestions={aiSuggestions}
+            onUpdateSuggestions={(newSuggestions) => setAiSuggestions(newSuggestions)}
           />
         )}
 
