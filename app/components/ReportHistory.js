@@ -207,7 +207,7 @@ export default function ReportHistory() {
                   {/* Delete icon using react-icons */}
                   <span 
                     onClick={(e) => handleDeleteReport(report._id, e)}
-                    className="ml-2 p-2 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-colors duration-200 cursor-pointer"
+                    className="ml-2 p-2 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-full transition-colors duration-200 cursor-pointer"
                     role="button"
                     tabIndex={0}
                     aria-label="Delete report"

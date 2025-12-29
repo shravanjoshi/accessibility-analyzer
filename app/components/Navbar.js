@@ -29,12 +29,12 @@ export default function Navbar() {
             <div className="text-blue-100 dark:text-blue-200">Loading...</div>
           ) : session ? (
             <div className="flex items-center space-x-4">
-              <span className="text-blue-100 dark:text-blue-200">
+              <span className="text-">
                 Welcome, {session.user.name || session.user.email}
               </span>
               <button
                 onClick={() => signOut()}
-                className="bg-blue-700 dark:bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-700 px-3 py-1 rounded transition-colors duration-200"
+                className="cursor-pointer bg-gray-50 hover:bg-gray-200 text-blue-600 px-3 py-1 rounded transition-colors duration-200"
               >
                 Sign Out
               </button>
@@ -49,7 +49,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/auth/signup"
-                className="bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 px-3 py-1 rounded transition-colors duration-200"
+                className="cursor-pointer bg-gray-50 hover:bg-gray-200 text-blue-600 px-3 py-1 rounded transition-colors duration-200"
               >
                 Sign Up
               </Link>

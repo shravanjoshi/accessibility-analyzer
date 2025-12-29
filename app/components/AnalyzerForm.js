@@ -50,38 +50,42 @@ export default function AnalyzerForm({ onReportGenerated }) {
       )}
 
       <div>
-        <label htmlFor="url" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label htmlFor="url" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Website URL
         </label>
-        <div className="relative">
-          <Globe className="absolute left-3 top-3 h-4 w-4 text-gray-400 dark:text-gray-500" />
-          <input
-            type="url"
-            id="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://example.com"
-            className="w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200"
-            required
-            disabled={isLoading}
-          />
+      </div>
+      <div className='flex align-centre justify-center gap-3'>
+        <div className='w-full'>
+          <div className="relative">
+            <Globe className="absolute left-3 top-3 h-4 w-4 text-gray-400 dark:text-gray-500" />
+            <input
+              type="url"
+              id="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="https://example.com"
+              className="w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200"
+              required
+              disabled={isLoading}
+            />
+          </div>
         </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className=" cursor-pointer bg-blue-600 dark:bg-blue-700 text-white  rounded-md px-3 hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed flex items-center justify-center transition-colors duration-200"
+        >
+          {isLoading ? (
+            <>
+              <LoadingSpinner />
+              <span className="ml-2">Analyzing...</span>
+            </>
+          ) : (
+            'Analyze'
+          )}
+        </button>
       </div>
 
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-blue-600 dark:bg-blue-700 text-white mt-2 py-2 px-4 rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed flex items-center justify-center transition-colors duration-200"
-      >
-        {isLoading ? (
-          <>
-            <LoadingSpinner />
-            <span className="ml-2">Analyzing...</span>
-          </>
-        ) : (
-          'Analyze Website'
-        )}
-      </button>
     </form>
   );
 }
