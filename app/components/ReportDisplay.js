@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import AISuggestions from './AISuggestions';
+import IssuesChart from './IssuesChart';
 
-export default function ReportDisplay({ report }) {
+export default function ReportDisplay({ report, showChart = true }) {
   const [activeTab, setActiveTab] = useState('summary');
   const [aiSuggestions, setAiSuggestions] = useState(report.aiSuggestions);
 
@@ -58,7 +59,7 @@ export default function ReportDisplay({ report }) {
           </div>
           {report.summary?.accessibilityScore && (
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {report.summary.accessibilityScore}%
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -76,11 +77,10 @@ export default function ReportDisplay({ report }) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
-                activeTab === tab.id
+              className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === tab.id
                   ? 'border-blue-500 text-blue-600 dark:text-blue-400'
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
-              } transition-colors duration-200`}
+                } transition-colors duration-200`}
             >
               {/* <span className="mr-2">{tab.icon}</span> */}
               {tab.label}
@@ -104,31 +104,36 @@ export default function ReportDisplay({ report }) {
         {activeTab === 'summary' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 rounded-lg p-4">
+              <div className=" border border-red-200 dark:border-red-800/30 rounded-lg p-4">
                 <div className="text-2xl font-bold text-red-600 dark:text-red-400">
                   {report.summary?.violations || report.axeResults?.violations?.length || 0}
                 </div>
                 <div className="text-sm text-red-800 dark:text-red-300">Violations</div>
               </div>
-              <div className="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/30 rounded-lg p-4">
+              <div className="border border-green-200 dark:border-green-800/80 rounded-lg p-4">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                   {report.summary?.passes || report.axeResults?.passes?.length || 0}
                 </div>
                 <div className="text-sm text-green-800 dark:text-green-300">Passes</div>
               </div>
-              <div className="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800/30 rounded-lg p-4">
+              <div className=" border border-yellow-200 dark:border-yellow-800/30 rounded-lg p-4">
                 <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
                   {report.summary?.incomplete || report.axeResults?.incomplete?.length || 0}
                 </div>
                 <div className="text-sm text-yellow-800 dark:text-yellow-300">Incomplete</div>
               </div>
-              <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                 <div className="text-2xl font-bold text-gray-600 dark:text-gray-400">
                   {report.summary?.inapplicable || report.axeResults?.inapplicable?.length || 0}
                 </div>
                 <div className="text-sm text-gray-800 dark:text-gray-300">Inapplicable</div>
               </div>
             </div>
+
+            {/* Issues Trend Chart */}
+            {showChart && <div className="mt-6">
+              <IssuesChart url={report.url} />
+            </div> }
 
             {/* Lighthouse Results Summary
             {report.lighthouseResults && (
@@ -188,7 +193,7 @@ export default function ReportDisplay({ report }) {
                       </p>
                     </div>
                   </div>
-                  
+
                   {violation.helpUrl && (
                     <div className="mb-3">
                       <a
@@ -270,7 +275,7 @@ export default function ReportDisplay({ report }) {
                       </p>
                     </div>
                   </div>
-                  
+
                   {item.helpUrl && (
                     <div className="mb-3">
                       <a
@@ -340,8 +345,8 @@ export default function ReportDisplay({ report }) {
         )}
 
         {activeTab === 'ai-suggestions' && (
-          <AISuggestions 
-            reportId={report._id} 
+          <AISuggestions
+            reportId={report._id}
             initialSuggestions={aiSuggestions}
             onUpdateSuggestions={(newSuggestions) => setAiSuggestions(newSuggestions)}
           />

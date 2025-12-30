@@ -22,7 +22,6 @@ export async function GET() {
       .limit(50)
       .select('url timestamp summary');
 
-      console.log('Fetched reports:', reports);
 
     return NextResponse.json(reports);
   } catch (error) {
