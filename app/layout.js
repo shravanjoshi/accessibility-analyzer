@@ -15,14 +15,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'Accessibility Analyzer',
+  title: 'AccessAudit - Web Accessibility Analyzer',
   description: 'Comprehensive web accessibility analysis tool',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-200 dark:bg-black min-h-screen transition-colors duration-200">
+      <body className={`bg-gray-200 dark:bg-black min-h-screen  transition-colors duration-200 ${geistSans.className} antialiased`}>
         <AuthProvider>
           <ThemeProvider>
             <Navbar />

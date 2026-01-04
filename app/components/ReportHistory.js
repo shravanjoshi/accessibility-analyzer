@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaTrash, FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import { FaTrash, FaCaretDown, FaCaretRight,  FaFolder, FaFolderOpen } from 'react-icons/fa';
 import LoadingSpinner from './LoadingSpinner';
 import ReportDisplay from './ReportDisplay';
 import IssuesChart from './IssuesChart';
@@ -191,27 +191,31 @@ export default function ReportHistory() {
             onClick={() => toggleUrlExpansion(url)}
             className="bg-gray-50 dark:bg-gray-800/50 p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center space-x-3 flex-1 min-w-0">
-                {/* <div className="text-gray-600 dark:text-gray-400">
-                  {expandedUrls.has(url) ? <FaChevronDown size={16} /> : <FaChevronRight size={16} />}
-                </div> */}
+                <div className="text-gray-600 dark:text-gray-400 flex-shrink-0">
+
+                  {expandedUrls.has(url) ? <FaCaretDown size={28} /> : <FaCaretRight size={28} />}
+                </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 break-words">
                     {url}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {urlReports.length} report{urlReports.length !== 1 ? 's' : ''} • Last analyzed: {formatDate(urlReports[0].timestamp)}
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    {urlReports.length} report{urlReports.length !== 1 ? 's' : ''}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Last: {formatDate(urlReports[0].timestamp)}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 ml-4">
-                <div className="text-center">
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Latest</div>
+              <div className="flex flex-col ml-7 sm:ml-0">
+                {/* <div className="text-center"> */}
+                  <div className="text-xs sm:text-center text-gray-500 dark:text-gray-400">Latest</div>
                   <div className="text-sm font-medium text-gray-800 dark:text-gray-200">
                     {urlReports[0].summary?.violations || 0} issues
-                  </div>
+                  {/* </div> */}
                 </div>
               </div>
             </div>
@@ -227,7 +231,7 @@ export default function ReportHistory() {
 
               {/* Individual Reports List */}
               <div className="space-y-3">
-                <h4 className="text-md font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                <h4 className="text-sm sm:text-md font-semibold text-gray-900 dark:text-gray-100 mb-3">
                   All Reports for this URL
                 </h4>
                 {urlReports.map((report) => (
@@ -236,67 +240,75 @@ export default function ReportHistory() {
                       onClick={() => handleReportClick(report._id)}
                       className="bg-gray-50 dark:bg-gray-800/50 p-3 hover:bg-gray-100 dark:hover:bg-gray-700/50 cursor-pointer transition-colors duration-200"
                     >
-                      <div className="flex justify-between items-center">
-                        <div className="flex-1">
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                      
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                        <div className="flex items-center space-x-3 flex-1 min-w-0">
+                          <div className='text-gray-600 dark:text-gray-400 flex-shrink-0'>
+                            {expandedReport && expandedReport._id === report._id ? <FaFolderOpen size={16} /> : <FaFolder size={16} />}
+                          </div>
+                          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                             {formatDate(report.timestamp)}
                           </p>
                         </div>
 
-                        <div className="flex items-center space-x-4 ml-4">
-                          <div className="text-center">
-                            <div className="text-xs text-gray-500 dark:text-gray-400">Violations</div>
-                            <div className="text-sm font-semibold text-gray-900 dark:text-gray-200">
-                              {report.summary?.violations || 0}
-                            </div>
-                          </div>
-
-                          <div className="text-center">
-                            <div className="text-xs text-gray-500 dark:text-gray-400">Passes</div>
-                            <div className="text-sm font-semibold text-gray-900 dark:text-gray-200">
-                              {report.summary?.passes || 0}
-                            </div>
-                          </div>
-
-                          {report.summary?.accessibilityScore !== null && report.summary?.accessibilityScore !== undefined && (
+                        <div className="flex items-center justify-between sm:justify-end space-x-3 sm:space-x-4 ml-0 xs:ml-7.5 sm:ml-4">
+                          <div className="grid grid-cols-3 sm:flex sm:items-center gap-3 sm:gap-4">
                             <div className="text-center">
-                              <div className="text-xs text-gray-500 dark:text-gray-400">Score</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Violations</div>
                               <div className="text-sm font-semibold text-gray-900 dark:text-gray-200">
-                                {report.summary.accessibilityScore}%
+                                {report.summary?.violations || 0}
                               </div>
                             </div>
-                          )}
 
-                          <div className="text-sm text-blue-600 dark:text-blue-400">
-                            {loadingReportId === report._id ? (
-                              <LoadingSpinner />
-                            ) : expandedReport && expandedReport._id === report._id ? (
-                              'Hide'
-                            ) : (
-                              'View'
+                            <div className="text-center">
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Passes</div>
+                              <div className="text-sm font-semibold text-gray-900 dark:text-gray-200">
+                                {report.summary?.passes || 0}
+                              </div>
+                            </div>
+
+                            {report.summary?.accessibilityScore !== null && report.summary?.accessibilityScore !== undefined && (
+                              <div className="text-center">
+                                <div className="text-xs text-gray-500 dark:text-gray-400">Score</div>
+                                <div className="text-sm font-semibold text-gray-900 dark:text-gray-200">
+                                  {report.summary.accessibilityScore}%
+                                </div>
+                              </div>
                             )}
                           </div>
 
-                          <span
-                            onClick={(e) => handleDeleteReport(report._id, e)}
-                            className="p-2 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-full transition-colors duration-200 cursor-pointer"
-                            role="button"
-                            tabIndex={0}
-                            aria-label="Delete report"
-                            title="Delete report"
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                handleDeleteReport(report._id, e);
-                              }
-                            }}
-                          >
-                            {deletingReportId === report._id ? (
-                              <LoadingSpinner size="sm" />
-                            ) : (
-                              <FaTrash size={14} />
-                            )}
-                          </span>
+                          <div className="flex items-center space-x-2 sm:space-x-3">
+                            <div className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium">
+                              {loadingReportId === report._id ? (
+                                <LoadingSpinner />
+                              ) : expandedReport && expandedReport._id === report._id ? (
+                                'Hide'
+                              ) : (
+                                'View'
+                              )}
+                            </div>
+
+                            <span
+                              onClick={(e) => handleDeleteReport(report._id, e)}
+                              className="p-2 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-full transition-colors duration-200 cursor-pointer flex-shrink-0"
+                              role="button"
+                              tabIndex={0}
+                              aria-label="Delete report"
+                              title="Delete report"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  handleDeleteReport(report._id, e);
+                                }
+                              }}
+                            >
+                              {deletingReportId === report._id ? (
+                                <LoadingSpinner size="sm" />
+                              ) : (
+                                <FaTrash size={14} />
+                              )}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -64,23 +64,23 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
   if (!suggestions && !isLoading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 transition-colors">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 transition-colors">
         <div className="text-center">
           <div className="mb-4">
             <svg className="mx-auto h-12 w-12 text-emerald-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+          <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
             AI-Powered Code Suggestions
           </h3>
-          <p className="text-gray-500 dark:text-gray-400 mb-4">
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-4">
             Get intelligent suggestions to fix accessibility issues using Google&apos;s Gemini AI.
           </p>
           <button
             onClick={generateSuggestions}
             disabled={isLoading}
-            className="bg-emerald-800  text-white px-6 py-2 rounded-lg hover:bg-emerald-900 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
+            className="bg-emerald-800 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-emerald-900 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors w-full sm:w-auto"
           >
             Generate AI Suggestions
           </button>
@@ -91,10 +91,10 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
   if (isLoading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 transition-colors">
-        <div className="flex items-center justify-center py-8">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 transition-colors">
+        <div className="flex flex-col sm:flex-row items-center justify-center py-8 gap-3">
           <LoadingSpinner />
-          <span className="ml-3 text-gray-600 dark:text-gray-400">Generating AI suggestions...</span>
+          <span className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Generating AI suggestions...</span>
         </div>
       </div>
     );
@@ -102,13 +102,13 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
   if (error) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 transition-colors">
-        <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 text-red-600 dark:text-red-400 px-4 py-3 rounded mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 transition-colors">
+        <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 text-red-600 dark:text-red-400 px-4 py-3 rounded mb-4 text-sm sm:text-base">
           {error}
         </div>
         <button
           onClick={generateSuggestions}
-          className="bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+          className="bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors w-full sm:w-auto"
         >
           Try Again
         </button>
@@ -122,23 +122,23 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors">
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-              <svg className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex-1">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center">
+              <svg className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
               AI Code Suggestions
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
               Powered by Google Gemini • {suggestions.suggestions.length} suggestions
             </p>
           </div>
           <button
             onClick={generateSuggestions}
             disabled={isLoading}
-            className="text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1 rounded transition-colors"
+            className="text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1 rounded transition-colors self-start sm:self-auto"
           >
             Regenerate
           </button>
@@ -147,21 +147,21 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         {suggestions.suggestions.map((suggestion, index) => (
-          <div key={index} className="p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={index} className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4">
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className={`inline-flex px-2 py-1 text-xs font-medium rounded border ${getPriorityColor(suggestion.priority)}`}>
                     {suggestion.priority.toUpperCase()} PRIORITY
                   </span>
-                  <code className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono text-gray-800 dark:text-gray-300">
+                  <code className="text-xs sm:text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono text-gray-800 dark:text-gray-300 break-all">
                     {suggestion.violationId}
                   </code>
                 </div>
-                <h4 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+                <h4 className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
                   {suggestion.title}
                 </h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-3">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">
                   {suggestion.problem}
                 </p>
                 {suggestion.wcagGuidelines && suggestion.wcagGuidelines.length > 0 && (
@@ -176,28 +176,28 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
               </div>
               <button
                 onClick={() => toggleSuggestion(index)}
-                className="ml-4 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors whitespace-nowrap self-start"
               >
                 {expandedSuggestions.has(index) ? 'Show Less' : 'Show Solution'}
               </button>
             </div>
 
             {expandedSuggestions.has(index) && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Impact</h5>
-                  <p className="text-gray-600 dark:text-gray-400">{suggestion.impact}</p>
+                  <h5 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-2">Impact</h5>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{suggestion.impact}</p>
                 </div>
 
                 <div>
-                  <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Solution</h5>
-                  <p className="text-gray-600 dark:text-gray-400">{suggestion.solution}</p>
+                  <h5 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-2">Solution</h5>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{suggestion.solution}</p>
                 </div>
 
                 {suggestion.codeExample && (
                   <div className="space-y-4">
-                    <h5 className="font-medium text-gray-900 dark:text-gray-100">Code Examples</h5>
-                    
+                    <h5 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100">Code Examples</h5>
+
                     {suggestion.codeExample.before && (
                       <CodeBlock
                         code={suggestion.codeExample.before}
@@ -205,7 +205,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
                         title="❌ Before (Problematic Code)"
                       />
                     )}
-                    
+
                     {suggestion.codeExample.after && (
                       <CodeBlock
                         code={suggestion.codeExample.after}
@@ -213,7 +213,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
                         title="✅ After (Fixed Code)"
                       />
                     )}
-                    
+
                     {suggestion.codeExample.css && (
                       <CodeBlock
                         code={suggestion.codeExample.css}
@@ -221,7 +221,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
                         title="Additional CSS"
                       />
                     )}
-                    
+
                     {suggestion.codeExample.javascript && (
                       <CodeBlock
                         code={suggestion.codeExample.javascript}
@@ -234,8 +234,8 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
                 {suggestion.additionalTips && suggestion.additionalTips.length > 0 && (
                   <div>
-                    <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Additional Tips</h5>
-                    <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+                    <h5 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-2">Additional Tips</h5>
+                    <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-gray-600 dark:text-gray-400">
                       {suggestion.additionalTips.map((tip, idx) => (
                         <li key={idx}>{tip}</li>
                       ))}
@@ -245,8 +245,8 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
 
                 {suggestion.testingInstructions && (
                   <div>
-                    <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Testing Instructions</h5>
-                    <p className="text-gray-600 dark:text-gray-400">{suggestion.testingInstructions}</p>
+                    <h5 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-2">Testing Instructions</h5>
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{suggestion.testingInstructions}</p>
                   </div>
                 )}
               </div>
@@ -256,9 +256,9 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
       </div>
 
       {suggestions.generalRecommendations && suggestions.generalRecommendations.length > 0 && (
-        <div className="p-6 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700">
-          <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-3">General Recommendations</h4>
-          <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+        <div className="p-4 sm:p-6 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700">
+          <h4 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-3">General Recommendations</h4>
+          <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {suggestions.generalRecommendations.map((rec, index) => (
               <li key={index}>{rec}</li>
             ))}
@@ -267,8 +267,8 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
       )}
 
       {suggestions.resourceLinks && suggestions.resourceLinks.length > 0 && (
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700">
-          <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-3">Helpful Resources</h4>
+        <div className="p-4 sm:p-6 border-t border-gray-200 dark:border-gray-700">
+          <h4 className="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-3">Helpful Resources</h4>
           <div className="space-y-2">
             {suggestions.resourceLinks.map((link, index) => (
               <a
@@ -276,7 +276,7 @@ export default function AISuggestions({ reportId, initialSuggestions = null, onU
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline transition-colors"
+                className="block text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline transition-colors break-words"
               >
                 {link.title} ↗
               </a>

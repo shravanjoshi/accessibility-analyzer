@@ -50,11 +50,11 @@ export default function AnalyzerForm({ onReportGenerated }) {
       )}
 
       <div>
-        <label htmlFor="url" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label htmlFor="url" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Website URL
         </label>
       </div>
-      <div className='flex align-centre justify-center gap-3'>
+      <div className='flex flex-col sm:flex-row align-centre justify-center gap-3'>
         <div className='w-full'>
           <div className="relative">
             <Globe className="absolute left-3 top-3 h-4 w-4 text-gray-400 dark:text-gray-500" />
@@ -73,7 +73,7 @@ export default function AnalyzerForm({ onReportGenerated }) {
         <button
           type="submit"
           disabled={isLoading}
-          className=" cursor-pointer bg-emerald-800  text-white  rounded-md px-3 hover:bg-emerald-900 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed flex items-center justify-center transition-colors duration-200"
+          className="cursor-pointer bg-emerald-800 text-white rounded-md px-6 py-2 hover:bg-emerald-900 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed flex items-center justify-center transition-colors duration-200 whitespace-nowrap w-full sm:w-auto"
         >
           {isLoading ? (
             <>
